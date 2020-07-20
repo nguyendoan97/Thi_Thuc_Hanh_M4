@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        h3{background-color: blue; color: white; padding: 10px 0 10px 20px;}
+        footer{margin: 10px 0;}
+
+        #customers {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+        #customers tr:hover {background-color: #ddd;}
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        input[type=text],input[type=email]{
+            width: 100%;
+            padding: 12px 0px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type=submit] {
+            width: 300px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+        #form {
+            width: 500px;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+        .notify span{font-size: 15px; color: blue;}
+    </style>
+</head>
+<body>
+<h3> Thêm thành phố</h3>
+<th:block th:if="${mess}">
+    <div class=" t-center m-t-50" style="color: green" th:text="${mess}"></div>
+</th:block>
+<form  th:object="${city}" method="post">
+<table>
+    <tr>
+        <td>Tên thành phố : </td>
+        <td><input type="text" th:field="*{name}"></td>
+    </tr>
+    <tr>
+        <td>Quốc gia :</td>
+        <td><select th:field="*{country}">
+            <option th:each=" c : ${countrys}" th:value="${c.id}" th:text="${c.name}"></option>
+        </select></td>
+    </tr>
+    <tr>
+        <td>Diện tích : </td>
+        <td><input type="text" th:field="*{acreage}"></td>
+    </tr>
+    <tr>
+    <td>GDP : </td>
+    <td><input type="text" th:field="*{GDP}"></td>
+    </tr>
+    <tr>
+    <td>Dân số : </td>
+    <td><input type="text" th:field="*{population}"></td>
+    </tr>
+    <tr>
+        <td>Mô tả : </td>
+        <td><textarea type="text" th:field="*{description}"></textarea></td>
+    </tr>
+    <tr>
+        <td><button type="submit">Thêm</button></td>
+        <td><a href="/">Trở lại</a></td>
+    </tr>
+
+
+
+</table>
+</form>
+</body>
+</html>
